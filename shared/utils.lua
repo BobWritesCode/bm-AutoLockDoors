@@ -1,7 +1,6 @@
 Debug = Config.Debug
 
 function Notification(src, _title, msg, _notifyType, _notifyTime)
-  DebugPrint2('Called: ', 'Notification')
   if Config.Notify == "QB" then
     local notifyTime = _notifyTime or 5000
     local notifyType = _notifyType or "primary"

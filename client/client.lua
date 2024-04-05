@@ -35,7 +35,7 @@ function LockClosestDoor()
   for k, v in pairs(Config.AutoLockingDoords) do
     if not Countdowns[k] then
       if #(v.coords - vec3(x, y, z)) < 30 then
-        TriggerServerEvent('bm-AutoLockDoors:server:lockdoor', k)
+        TriggerServerEvent('bm-AutoLockDoors:server:lockdoor', k, v.group)
         break
       end
     end
@@ -43,7 +43,5 @@ function LockClosestDoor()
 end
 
 DoorLockThread()
-
--- TriggerEvent('bm-AutoLockDoors:client:LockClosestDoor')
 
 print("^1[Bob\'s Mods] ^2Auto Door Locks ^7-^5 Client^7")

@@ -1,15 +1,23 @@
 # [Bob's Mods] Auto Lock Doors
 
+## Work in progress
+
 ## Features
 
-Used to trigger a timed lock on a door using qb-doorlocks
+Used to trigger a timed lock on a door using qb-doorlock
 
 Example: A player hits a store for a robbery. You can configure the nearest doors (in the config and within a certain distance) to lock for a specific time.
 
 ## Dependencies
 
-- QB-Core
-- QB-Doorlocks
+- qb-core
+- qb-doorlock or cd_doorlock
+
+## Usage
+
+You need to place this trigger event client side of when you want to activate the nearby door lock
+
+```TriggerEvent('bm-AutoLockDoors:client:LockClosestDoor')```
 
 ## License
 

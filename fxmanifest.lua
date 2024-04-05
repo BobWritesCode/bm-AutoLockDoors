@@ -1,8 +1,9 @@
 fx_version 'cerulean'
 game 'gta5'
 lua54 'yes'
-description 'Auto Door Locks'
-version '0.01'
+author 'Bob\'s Mods'
+description 'Auto locks nearest configured doors when event is triggered'
+version '0.02'
 
 
 client_scripts {
