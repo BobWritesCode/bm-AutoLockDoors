@@ -1,6 +1,6 @@
 Config = {
   Debug = false,
-  Notify = 'QB',
+  Notify = 'QB', -- QB or okokNotify
 
   doorLockFramework = 'QB', -- QB or cd_doorlock
 
