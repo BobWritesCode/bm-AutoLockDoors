@@ -1,11 +1,18 @@
 local Countdowns = {}
 
 RegisterNetEvent('bm-AutoLockDoors:client:RecieveCountdowns', function(_Countdowns)
+  DebugPrint2("Function: ", "bm-AutoLockDoors:client:RecieveCountdowns")
   Countdowns = _Countdowns
+  local x, y, z = table.unpack(GetEntityCoords(PlayerPedId()))
+  for k, v in pairs(Countdowns) do
+    if #(v.coords - vec3(x, y, z)) < 2  and Countdowns[k].count == Config.doors[k].lockTime then
+      _SetEntityCollision()
+      break
+    end
+  end
 end)
 
 function DoorLockThread()
-  DebugPrint2("Function: ", "DoorLockThread")
   CreateThread(function()
     local isActive = true
     while isActive do
@@ -24,6 +31,25 @@ function DoorLockThread()
   end)
 end
 
+
+RegisterNetEvent('bm-AutoLockDoors:client:AdminLockClosestDoor', function()
+  DebugPrint2("Function: ", "bm-AutoLockDoors:client:AdminLockClosestDoor")
+  -- _SetEntityCollision()
+  LockClosestDoor()
+end)
+
+function _SetEntityCollision()
+  CreateThread(function()
+    SetPedToRagdoll(PlayerPedId(), 2000, 0, 0, false, false, false)
+    Wait(0)
+    FreezeEntityPosition(PlayerPedId(), true)
+    SetEntityCollision(PlayerPedId(), false, true)
+    Wait(2000)
+    SetEntityCollision(PlayerPedId(), true, true)
+    FreezeEntityPosition(PlayerPedId(), false)
+  end)
+end
+
 RegisterNetEvent('bm-AutoLockDoors:client:LockClosestDoor', function()
   DebugPrint2("Function: ", "bm-AutoLockDoors:client:LockClosestDoor")
   LockClosestDoor()
@@ -32,7 +58,7 @@ end)
 function LockClosestDoor()
   DebugPrint2("Function: ", "LockClosestDoor")
   local x, y, z = table.unpack(GetEntityCoords(PlayerPedId()))
-  for k, v in pairs(Config.AutoLockingDoords) do
+  for k, v in pairs(Config.doors) do
     if not Countdowns[k] then
       if #(v.coords - vec3(x, y, z)) < 30 then
         TriggerServerEvent('bm-AutoLockDoors:server:lockdoor', k, v.group)

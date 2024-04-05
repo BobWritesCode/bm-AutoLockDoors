@@ -4,7 +4,7 @@ Config = {
 
   doorLockFramework = 'QB', -- QB or cd_doorlock
 
-  AutoLockingDoords = {
+  doors = {
     routefifteen247 = {
       group ='TwentyFourSevens',
       coords = vec3(2559.21, 385.39, 108.62),
