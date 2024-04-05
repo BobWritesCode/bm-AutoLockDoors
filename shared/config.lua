@@ -1,5 +1,5 @@
 Config = {
-  Debug = true,
+  Debug = false,
   Notify = 'QB',
 
   doorLockFramework = 'QB', -- QB or cd_doorlock
